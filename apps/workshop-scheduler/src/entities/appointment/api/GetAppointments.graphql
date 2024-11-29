@@ -1,0 +1,18 @@
+query GetAppointments {
+  appointments {
+    id
+    type
+    customer {
+      id
+      name
+      username
+      email
+    }
+    serviceAdvisor {
+      id
+      name
+      username
+      email
+    }
+  }
+}

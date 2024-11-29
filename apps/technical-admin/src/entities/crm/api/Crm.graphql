@@ -1,0 +1,6 @@
+query GetCrms {
+  crms {
+    id
+    name
+  }
+}

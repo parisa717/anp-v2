@@ -1,0 +1,21 @@
+mutation CreateLocationWork($locationWorks: [GqlCreateWorkshopLocationWorkInput!]!) {
+  createWorkshopLocationWork(locationWorks: $locationWorks) {
+    locationWorks {
+      id
+    }
+  }
+}
+
+query GetLocationWorks($locationId: UUID!) {
+  getLocationWorks(locationId: $locationId) {
+    locationWorks {
+      id
+      location
+      name
+      brand
+      qualification
+      isRecommended
+      work
+    }
+  }
+}

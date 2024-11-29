@@ -1,0 +1,119 @@
+schema {
+  query: Query
+}
+
+type Query {
+  currentUser: User
+  getArea(id: UUID!): GqlAreaObjectType!
+  getLocation(id: UUID!): GqlLocationObjectType!
+  getLocations: GqlGetLocationsObjectType!
+}
+
+type User {
+  firstName: String!
+  lastName: String!
+  username: String!
+  email: String!
+  userRole: UserRole!
+}
+
+enum UserRole {
+  READ_ONLY
+  REGULAR_USER
+  REGULAR_PLUS_USER
+  ADMIN_USER
+  AVAG_USER
+}
+
+type GqlGetLocationsObjectType {
+  locations: [GqlLocationObjectType!]!
+}
+
+type GqlLocationObjectType {
+  id: UUID!
+  code: String!
+  name: String!
+  isActive: Boolean!
+  address: GqlAddressObjectType!
+  area: GqlSimplifiedAreaObjectType!
+  brands: [GqlSimplifiedBrandObjectType!]!
+}
+
+type GqlAddressObjectType {
+  id: UUID!
+  country: GqlSimplifiedCountryObjectType!
+  postCode: String!
+  city: String!
+  address: String!
+}
+
+type GqlCountryObjectType {
+  id: UUID!
+  code: String!
+  name: String!
+}
+
+type GqlSimplifiedCountryObjectType {
+  id: UUID!
+  name: String!
+}
+
+type GqlAreaObjectType {
+  id: UUID!
+  code: String!
+  name: String!
+  isActive: Boolean!
+  address: GqlAddressObjectType!
+  dms: GqlDmsObjectType!
+  crm: GqlCrmObjectType!
+}
+
+type GqlDmsObjectType {
+  id: UUID!
+  name: String!
+}
+
+type GqlCrmObjectType {
+  id: UUID!
+  name: String!
+}
+
+type GqlSimplifiedAreaObjectType {
+  id: UUID!
+  code: String!
+  name: String!
+}
+
+type GqlBrandObjectType {
+  """
+  Brand ID
+  """
+  id: UUID!
+
+  """
+  Brand code
+  """
+  code: String!
+
+  """
+  Is Brand active
+  """
+  isActive: Boolean!
+}
+
+type GqlSimplifiedBrandObjectType {
+  """
+  Brand ID
+  """
+  id: UUID!
+
+  """
+  Brand code
+  """
+  code: String!
+
+  """
+  Is Workshop default
+  """
+  isWorkshopDefault: Boolean!
+}

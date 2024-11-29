@@ -1,0 +1,58 @@
+mutation CreateArea($area: CreateAreaInputType!) {
+  createArea(area: $area) {
+    id
+  }
+}
+
+query GetAreas {
+  areas {
+    id
+    code
+    address {
+      id
+      city
+      postCode
+      address
+      country {
+        id
+        name
+      }
+    }
+    crm {
+      id
+      name
+    }
+    dms {
+      id
+      name
+    }
+    isActive
+    name
+  }
+}
+query GetArea($id: UUID!) {
+  getArea(id: $id) {
+    id
+    code
+    name
+    isActive
+    address {
+      id
+      country {
+        id
+        name
+      }
+      postCode
+      city
+      address
+    }
+    dms {
+      id
+      name
+    }
+    crm {
+      id
+      name
+    }
+  }
+}

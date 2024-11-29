@@ -1,0 +1,1 @@
+export { CreateLocationWorkPage } from './Page'

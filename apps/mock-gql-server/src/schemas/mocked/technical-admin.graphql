@@ -1,0 +1,121 @@
+scalar UUID
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  areas: [Area]
+  countries: [Country]
+  addresses: [Address]
+  dmss: [Dms]
+  crms: [Crm]
+}
+
+type Mutation {
+  createArea(area: CreateAreaInputType!): CreateAreaObjectType!
+  createLocation(location: GqlCreateLocationInputType!): GqlCreateLocationObjectType!
+}
+
+type GqlCreateLocationObjectType {
+  status: Boolean!
+}
+
+type Country {
+  id: ID!
+  name: String!
+}
+
+type Dms {
+  id: ID!
+  name: String!
+}
+
+type Crm {
+  id: ID!
+  name: String!
+}
+
+type Address {
+  id: ID!
+  country: Country!
+  postCode: String!
+  city: String!
+  address: String!
+}
+
+type Area {
+  id: ID!
+  code: String!
+  name: String!
+  address: Address!
+  dms: Dms!
+  crm: Crm!
+  isActive: Boolean!
+}
+
+input GqlCreateLocationInputType {
+  """
+  Area ID to which the location is assigned
+  """
+  areaId: UUID!
+
+  """
+  Location ID
+  """
+  id: String!
+
+  """
+  Location name
+  """
+  name: String!
+
+  """
+  Location zip code
+  """
+  zipCode: String!
+
+  """
+  Location city
+  """
+  city: String!
+
+  """
+  Location address
+  """
+  address: String!
+
+  """
+  List of Brand IDs assigned to the location
+  """
+  brandIds: [UUID!]!
+
+  """
+  Location status
+  """
+  isActive: Boolean!
+}
+
+type CreateAreaObjectType {
+  id: ID!
+  code: String!
+}
+
+input CreateAreaInputType {
+  code: String!
+  name: String!
+  address: AddressInput!
+  isActive: Boolean!
+}
+
+input CountryInput {
+  id: ID!
+}
+
+input AddressInput {
+  country: CountryInput!
+  postCode: String!
+  city: String!
+  address: String!
+}

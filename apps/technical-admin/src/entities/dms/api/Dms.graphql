@@ -1,0 +1,6 @@
+query GetDmss {
+  dmss {
+    id
+    name
+  }
+}

@@ -1,0 +1,266 @@
+{
+  "pages": {
+    "businessStatus": {
+      "businessStatusList": {
+        "title": "Statuses",
+        "appointmentStatus": "Appointment Status",
+        "additionalStatus": "Additional Status",
+        "addNewAppointmentStatus": "Add New Appointment Status",
+        "addNewAdditionalStatus": "Add New Additional Status",
+        "table": {
+          "columnHeaders": {
+            "name": "Name",
+            "isDefault": "Default",
+            "isActive": "Status",
+            "isHighlighted": "Highlighted in slots"
+          },
+          "statuses": {
+            "active": "Active",
+            "inactive": "Inactive"
+          },
+          "empty": "No statuses found"
+        },
+        "errors": {
+          "reorderDefaultStatus": {
+            "title": "Error",
+            "detail": "The default status is always first"
+          }
+        }
+      },
+      "createAndEditBusinessStatusForm": {
+        "createTitle": "Add appointment status",
+        "editTitle": "Edit appointment status",
+        "form": {
+          "fields": {
+            "name": "Status name",
+            "isDefault": "Define as default",
+            "isHighlighted": "Highlighted in slots",
+            "addStatusButton": "Add status"
+          }
+        }
+      },
+      "unselectDefaultBusinessStatus": {
+        "title": "Unselect default status",
+        "header": {
+          "youUnselecting": "You unselecting",
+          "statusName": "Status name",
+          "asDefaultAppointmentStatus": "as default appointment status",
+          "asAdditionalStatus": "as additional status"
+        },
+        "form": {
+          "fields": {
+            "isDefault": "Define as default"
+          }
+        },
+        "instructions": "One status need to be setup as default.\nChoose from below statuses which of them gonna be defined as default."
+      },
+      "changeBusinessStatusConfirmation": {
+        "title": "Status Change",
+        "description": "Are you sure you want to change the status?"
+      }
+    },
+    "businessStatusByLocation": {
+      "businessStatusByLocationList": {
+        "title": "Setup Statuses and Overbooking",
+        "appointmentStatus": "Appointment Status",
+        "additionalStatus": "Additional Status",
+        "addNewAppointmentStatus": "Add New Appointment Status",
+        "addNewAdditionalStatus": "Add New Additional Status",
+        "table": {
+          "columnHeaders": {
+            "name": "Name",
+            "isDefault": "Default",
+            "isActive": "Status",
+            "isHighlighted": "Highlighted in slots"
+          },
+          "empty": "No statuses found"
+        }
+      },
+      "createBusinessStatusByLocationForm": {
+        "title": "Add appointment status",
+        "form": {
+          "fields": {
+            "businessStatus": "Business Status"
+          },
+          "buttons": {
+            "addStatusButton": "add another status",
+            "addAllStatusesButton": "add all statuses"
+          }
+        }
+      },
+      "createAdditionalBusinessStatusByLocationForm": {
+        "title": "Add additional status",
+        "form": {
+          "fields": {
+            "businessStatus": "Additional Status"
+          },
+          "buttons": {
+            "addStatusButton": "add another additional status",
+            "addAllStatusesButton": "add all additional statuses"
+          }
+        }
+      },
+      "locationOverbooking": {
+        "warning": {
+          "title": "Overbooking level - warning"
+        },
+        "maximumLevel": {
+          "title": "Overbooking level - no further appointments possible"
+        }
+      }
+    },
+    "location": {
+      "locationsList": {
+        "title": "Locations Configuration",
+        "message": "Information: Only active locations are displayed.",
+        "table": {
+          "columnHeaders": {
+            "areaId": "Area ID",
+            "locationId": "Location ID",
+            "locationName": "Location Name",
+            "brand": "Brand",
+            "zipCode": "Zip Code",
+            "city": "City",
+            "address": "Address"
+          },
+          "empty": "No locations found"
+        }
+      },
+      "locationDetails": {
+        "title": "Location Details",
+        "locationTable": {
+          "headers": {
+            "locationId": "Location ID",
+            "locationName": "Location Name",
+            "brands": "Brands",
+            "zipCode": "Zip Code",
+            "city": "City",
+            "address": "Address"
+          },
+          "empty": "No location details found"
+        },
+        "areaTable": {
+          "headers": {
+            "areaId": "Area ID",
+            "areaName": "Area Name",
+            "country": "Country",
+            "dms": "DMS",
+            "crm": "CRM",
+            "zipCode": "Zip Code",
+            "city": "City",
+            "address": "Address"
+          },
+          "empty": "No area details found"
+        },
+        "locationWork": {
+          "tabTitle": "Services",
+          "title": "Services setup",
+          "buttons": {
+            "createLocationWork": "Add service"
+          }
+        },
+        "locationOverbooking": {
+          "title": "Overbooking Setup",
+          "description": "Overbooking lowest level",
+          "editMode": {
+            "confirmModal": {
+              "title": "Information",
+              "content": "The change has been automatically transferred to the setup of the admin user for this location. Please check this for correctness."
+            }
+          }
+        },
+        "connectedLocations": {
+          "title": "Connected Locations",
+          "description": "Choose locations which gonna be display in \"all locations\" section in booking process.",
+          "table": {
+            "headers": {
+              "locationId": "Location ID",
+              "locationName": "Location Name",
+              "brands": "Brands",
+              "zipCode": "Zip Code",
+              "city": "City",
+              "address": "Address",
+              "connected": "Connected"
+            },
+            "empty": "No location details found"
+          },
+          "dialog": {
+            "title": "Cancel location connection",
+            "description": "Are you sure you want to unselect the location?"
+          }
+        }
+      }
+    },
+    "colorSetup": {
+      "colorSetupList": {
+        "title": "Color Setup",
+        "addColor": "Add Color",
+        "editColors": "Edit",
+        "capacitiesColors": "Capacities Colors",
+        "table": {
+          "columnHeaders": {
+            "color": "Color",
+            "capacityValue": "Capacity Value [%]"
+          },
+          "empty": "No colors found"
+        }
+      },
+      "editColorSetup": {
+        "form": {
+          "validation": {
+            "firstCapacityMustStartWithZero": "The setup could not be saved because the first capacity level must start with 0.",
+            "capacityShouldHaveASpecifiedFormat": "The setup could not be saved because the values were entered in the wrong format. There must be no space between the value and the hyphen. The last capacity level must be entered in the format >Value. Examples: 0-50, >100.",
+            "lastCapacityShouldNotBeGreaterThan100": "The setup could not be saved because >100 is the highest value that can be entered.",
+            "lastCapacityShouldBeGreaterThanPrevious": "The setup could not be saved because the last capacity level > value of the previous gradation must be entered.",
+            "capacitiesShouldNotOverlap": "The setup could not be saved because the values entered overlap.",
+            "capacitiesShouldNotHaveGaps": "The setup could not be saved because there are gaps between the values."
+          }
+        }
+      }
+    },
+    "work": {
+      "title": "Services",
+      "add": {
+        "title": "Add service",
+        "defineWorkSetup": "Define service setup",
+        "assignLocations": "Assign locations",
+        "workSetupForm": {
+          "workName": "Service name",
+          "qualification": "Qualification",
+          "status": "Status",
+          "active": "Active",
+          "inactive": "Inactive",
+          "nameChangeable": "Name changeable",
+          "capacityChangeable": "Capacity changeable",
+          "addWorkButton": "Add service",
+          "nextButton": "Next",
+          "cancelButton": "Cancel",
+          "skipAndSaveButton": "Skip & save"
+        }
+      }
+    }
+  },
+  "widgets": {
+    "baseLayout": {
+      "topbar": {
+        "title": "Service appointment planner Admin"
+      },
+      "menuItems": {
+        "mainMenu": "Main Menu",
+        "settings": "Settings",
+        "dashboard": "Dashboard",
+        "appointments": "Appointments",
+        "status": "Statuses",
+        "statusAndOverbookingConfiguration": "Statuses and Overbooking Configuration",
+        "counterConfiguration": "Counter Configuration",
+        "serviceAdvisorConfiguration": "Service Advisor Configuration",
+        "teamConfiguration": "Team Configuration",
+        "userConfiguration": "User Configuration",
+        "workToBeCarriedOut": "Work to be carried out",
+        "locationConfiguration": "Location Configuration",
+        "setupAlarmFunctionDepotList": "Setup Alarm Function Depot List",
+        "colorSetup": "Color Setup"
+      }
+    }
+  }
+}

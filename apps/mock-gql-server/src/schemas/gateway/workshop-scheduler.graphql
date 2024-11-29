@@ -1,0 +1,74 @@
+"""
+Indicates exactly one field must be supplied and this field must not be `null`.
+"""
+directive @oneOf on INPUT_OBJECT
+
+"""
+A UUID parser
+"""
+scalar UUID
+
+type Query {
+  """
+  This method lists Brands
+  """
+  getBrands: GqlGetBrandsObjectType!
+
+  """
+  This method returns list of Business Statuses
+  """
+  getWorkshopAppointmentBusinessStatuses: GqlGetBusinessStatusesObjectType!
+}
+
+type GqlGetBrandsObjectType {
+  """
+  Brands collection
+  """
+  brands: [GqlBrandObjectType!]!
+}
+
+type GqlBrandObjectType {
+  """
+  Brand ID
+  """
+  id: UUID!
+
+  """
+  Brand code
+  """
+  code: String!
+
+  """
+  Is Brand active
+  """
+  isActive: Boolean!
+}
+
+type GqlGetBusinessStatusObjectType {
+  """
+  Business Status ID
+  """
+  id: UUID!
+
+  """
+  Business Status name
+  """
+  name: String!
+
+  """
+  Is Business Status default
+  """
+  isDefault: Boolean!
+
+  """
+  Is Business Status active
+  """
+  isActive: Boolean!
+}
+
+type GqlGetBusinessStatusesObjectType {
+  """
+  Business Statuses ids collection
+  """
+  businessStatuses: [GqlGetBusinessStatusObjectType!]!
+}

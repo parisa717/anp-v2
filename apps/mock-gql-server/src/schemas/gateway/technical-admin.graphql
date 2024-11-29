@@ -1,0 +1,122 @@
+"""
+Indicates exactly one field must be supplied and this field must not be `null`.
+"""
+directive @oneOf on INPUT_OBJECT
+
+type GqlCreateBrandObjectType {
+  """
+  Status of Brand creation
+  """
+  status: Boolean!
+}
+
+type GqlGetBrandObjectType {
+  """
+  Brand ID
+  """
+  id: UUID!
+
+  """
+  Brand code
+  """
+  code: String!
+
+  """
+  Is Brand active
+  """
+  isActive: Boolean!
+}
+
+"""
+A UUID parser
+"""
+scalar UUID
+
+type GqlGetBrandsObjectType {
+  """
+  Brands collection
+  """
+  data: [GqlBrandObjectType!]!
+}
+
+type GqlBrandObjectType {
+  """
+  Brand ID
+  """
+  id: UUID!
+
+  """
+  Brand code
+  """
+  code: String!
+
+  """
+  Is Brand active
+  """
+  isActive: Boolean!
+}
+
+type GqlUpdateBrandObjectType {
+  """
+  Status of Brand update
+  """
+  status: Boolean!
+}
+
+type Query {
+  """
+  This method lists Brands
+  """
+  getBrands: GqlGetBrandsObjectType!
+
+  """
+  This method returns Brand based on its id
+  """
+  getBrand(
+    """
+    Brand ID
+    """
+    id: UUID!
+  ): GqlGetBrandObjectType!
+}
+
+type Mutation {
+  """
+  This method creates new Brand
+  """
+  createBrand(brand: GqlCreateBrandInputType!): GqlCreateBrandObjectType!
+
+  """
+  This method updates Brand
+  """
+  updateBrand(brand: GqlUpdateBrandInputType!): GqlUpdateBrandObjectType!
+}
+
+input GqlCreateBrandInputType {
+  """
+  Brand code
+  """
+  code: String!
+
+  """
+  Is Brand active
+  """
+  isActive: Boolean!
+}
+
+input GqlUpdateBrandInputType {
+  """
+  Brand ID
+  """
+  id: UUID!
+
+  """
+  Brand code
+  """
+  code: String!
+
+  """
+  Is Brand active
+  """
+  isActive: Boolean!
+}

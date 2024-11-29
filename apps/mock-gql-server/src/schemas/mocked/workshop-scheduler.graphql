@@ -1,0 +1,373 @@
+scalar UUID
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  appointments: [Appointment]
+  getWorkshopAppointmentBusinessStatus(id: UUID!): GqlBusinessStatusObjectType!
+  getWorkshopAppointmentAdditionalBusinessStatus(id: UUID!): GqlAdditionalBusinessStatusObjectType!
+  getWorkshopAppointmentAdditionalBusinessStatuses: GqlGetAdditionalBusinessStatusesObjectType!
+  getLocationWorkshopAppointmentBusinessStatuses(id: UUID!): GqlGetLocationBusinessStatusesObjectType!
+  getLocationWorkshopAppointmentAdditionalBusinessStatuses(id: UUID!): GqlGetAdditionalBusinessStatusesObjectType!
+  getAvailabilityColors: GqlGetAvailabilityColorsObjectType!
+  getWorkshopConnectedLocations(locationId: UUID!): GqlGetWorkshopConnectedLocationsObjectType!
+  getLocationOverbooking(locationId: UUID!): GqlGetLocationOverbookingObjectType!
+  getWorkshopWorks: GqlGetWorkshopWorksObjectType!
+  getLocationWorks(locationId: UUID!): GqlGetLocationWorksObjectType!
+  getQualifications: GqlGetQualificationsObjectType!
+}
+
+type Mutation {
+  createBusinessStatuses(businessStatuses: [GqlCreateBusinessStatusesInputType!]!): GqlCreateBusinessStatusesObjectType!
+  createAdditionalBusinessStatuses(
+    additionalBusinessStatuses: [GqlCreateAdditionalBusinessStatusesInputType!]!
+  ): GqlCreateAdditionalBusinessStatusesObjectType!
+  createWorkshopConnectedLocations(
+    locationId: UUID!
+    connectedLocationId: UUID
+  ): GqlCreateWorkshopConnectedLocationsObjectType!
+  updateWorkshopAppointmentBusinessStatus(
+    businessStatus: GqlEditBusinessStatusInputType!
+  ): GqlEditBusinessStatusObjectType!
+  updateWorkshopAppointmentAdditionalBusinessStatus(
+    additionalBusinessStatus: GqlEditAdditionalBusinessStatusInputType!
+  ): GqlEditAdditionalBusinessStatusObjectType!
+  activateWorkshopAppointmentBusinessStatus(id: UUID!): GqlActivateBusinessStatusObjectType!
+  activateWorkshopAppointmentAdditionalBusinessStatus(id: UUID!): GqlActivateAdditionalBusinessStatusObjectType!
+  deactivateWorkshopAppointmentBusinessStatus(
+    id: UUID!
+    defaultBusinessStatusId: UUID
+  ): GqlDeactivateBusinessStatusObjectType!
+  deactivateWorkshopAppointmentAdditionalBusinessStatus(
+    id: UUID!
+    defaultAdditionalBusinessStatusId: UUID
+  ): GqlDeactivateBusinessStatusObjectType!
+  deleteWorkshopConnectedLocations(
+    locationId: UUID!
+    connectedLocationId: UUID
+  ): GqlDeleteWorkshopConnectedLocationsObjectType!
+  assignLocationWorkshopAppointmentBusinessStatus(
+    id: UUID!
+    businessStatuses: [GqlAssignLocationWorkshopAppointmentBusinessStatusInputType!]!
+  ): GqlAssignLocationWorkshopAppointmentBusinessStatus!
+  unassignLocationWorkshopAppointmentBusinessStatus(
+    locationId: UUID!
+    businessStatusId: UUID!
+  ): GqlUnassignLocationWorkshopAppointmentBusinessStatus!
+  assignLocationWorkshopAppointmentAdditionalBusinessStatus(
+    id: UUID!
+    additionalBusinessStatuses: [GqlAssignLocationWorkshopAdditionalAppointmentBusinessStatusInputType!]!
+  ): GqlAssignLocationWorkshopAdditionalAppointmentBusinessStatus!
+  unassignLocationWorkshopAppointmentAdditionalBusinessStatus(
+    locationId: UUID!
+    businessStatusId: UUID!
+  ): GqlUnassignLocationWorkshopAppointmentAdditionalBusinessStatus!
+  reorderWorkshopAppointmentBusinessStatuses(
+    businessStatuses: [GqlReorderWorkshopAppointmentBusinessStatusesInputType!]!
+  ): GqlReorderWorkshopAppointmentBusinessStatuses!
+  updateAvailabilityColors(availabilityColors: [GqlAvailabilityColorWithoutIdInputType!]!): GqlUpdateAvailabilityColor!
+  updateLocationOverbooking(
+    locationId: UUID!
+    capacityOverbookingMultiplier: Float!
+    maxCapacityMultiplier: Float!
+  ): GqlUpdateLocationOverbookingObjectType!
+  updateLocationMinimalOverbooking(
+    locationId: UUID!
+    minimumOverbookingMultiplier: Float!
+  ): GqlUpdateLocationMinimalOverbookingObjectType!
+  createWorkshopWork(works: [GqlCreateWorkshopWorkInput!]!): GqlWorkshopWorkObjectType!
+  createWorkshopLocationWork(
+    locationWorks: [GqlCreateWorkshopLocationWorkInput!]!
+  ): GqlCreateWorkshopLocationWorkObjectType!
+}
+
+input GqlCreateWorkshopLocationWorkInput {
+  workId: UUID!
+  locationId: UUID!
+  isRecommended: Boolean!
+  amountPerDayLimit: Int
+  capacityPerDayLimit: Float
+  brands: [GqlCreateWorkshopLocationWorkBrandInput!]!
+}
+
+input GqlCreateWorkshopLocationWorkBrandInput {
+  id: UUID!
+}
+
+type GqlCreateWorkshopLocationWorkObjectType {
+  locationWorks: [GqlCreateLocationWorkLocationWorksObjectType!]!
+}
+
+type GqlCreateLocationWorkLocationWorksObjectType {
+  id: UUID!
+}
+
+input GqlCreateWorkshopWorkInput {
+  name: String!
+  isCapacityEditable: Boolean!
+  isDescriptionEditable: Boolean!
+  isActive: Boolean!
+  qualification: QualificationInput!
+  brands: [BrandInput!]!
+}
+
+input QualificationInput {
+  id: UUID!
+}
+
+input BrandInput {
+  id: UUID!
+  timeUnits: Int!
+}
+
+type WorkshopWork {
+  id: UUID!
+}
+
+type GqlWorkshopWorkObjectType {
+  works: [WorkshopWork!]!
+}
+
+enum AppointmentType {
+  PICKUP
+  RECEPTION
+}
+
+type Appointment {
+  id: ID!
+  type: AppointmentType!
+  customer: Customer!
+  serviceAdvisor: ServiceAdvisor!
+}
+
+type Customer {
+  id: ID!
+  name: String!
+  username: String!
+  email: String!
+}
+
+type ServiceAdvisor {
+  id: ID!
+  name: String!
+  username: String!
+  email: String!
+}
+
+type GqlBusinessStatusObjectType {
+  id: UUID!
+  name: String!
+  isActive: Boolean!
+  isDefault: Boolean!
+}
+
+type GqlAdditionalBusinessStatusObjectType {
+  id: ID!
+  name: String!
+  isActive: Boolean!
+  isDefault: Boolean!
+  isHighlighted: Boolean!
+}
+
+type GqlConnectedLocationIdObjectType {
+  connectedLocationId: ID!
+}
+
+type GqlWorkObjectType {
+  id: UUID!
+  name: String!
+  isCapacityEditable: Boolean!
+  isDescriptionEditable: Boolean!
+  isActive: Boolean!
+  qualification: GqlWorkQualificationObjectType!
+  brands: [GqlWorkBrandObjectType]!
+}
+
+type GqlLocationWorkObjectType {
+  id: ID!
+  location: UUID!
+  name: String!
+  brand: [UUID!]
+  qualification: [UUID!]
+  isRecommended: Boolean!
+  work: UUID!
+}
+
+type GqlWorkQualificationObjectType {
+  id: UUID!
+  name: String!
+}
+
+type GqlWorkBrandObjectType {
+  id: UUID!
+  name: String!
+  timeUnits: Int!
+}
+
+type GqlQualificationObjectType {
+  id: UUID!
+  code: String!
+  name: String!
+}
+
+input GqlCreateBusinessStatusesInputType {
+  name: String!
+  isDefault: Boolean!
+}
+
+input GqlCreateAdditionalBusinessStatusesInputType {
+  name: String!
+  isDefault: Boolean!
+  isHighlighted: Boolean!
+}
+
+input GqlEditBusinessStatusInputType {
+  id: UUID!
+  name: String!
+  isDefault: Boolean!
+}
+
+input GqlEditAdditionalBusinessStatusInputType {
+  id: UUID!
+  name: String!
+  isDefault: Boolean!
+  isHighlighted: Boolean!
+}
+
+input GqlAssignLocationWorkshopAppointmentBusinessStatusInputType {
+  id: UUID!
+}
+
+input GqlAssignLocationWorkshopAdditionalAppointmentBusinessStatusInputType {
+  id: UUID!
+}
+
+input GqlAvailabilityColorWithoutIdInputType {
+  color: String!
+  minimalCapacity: Int!
+  maximumCapacity: Int
+}
+
+type GqlCreateBusinessStatusesObjectType {
+  status: Boolean!
+}
+
+type GqlCreateAdditionalBusinessStatusesObjectType {
+  status: Boolean!
+}
+
+type GqlEditBusinessStatusObjectType {
+  status: Boolean!
+}
+
+type GqlActivateBusinessStatusObjectType {
+  status: Boolean!
+}
+
+type GqlActivateAdditionalBusinessStatusObjectType {
+  status: Boolean!
+}
+
+type GqlDeactivateBusinessStatusObjectType {
+  status: Boolean!
+}
+
+type GqlDeactivateAdditionalBusinessStatusObjectType {
+  status: Boolean!
+}
+
+type GqlEditAdditionalBusinessStatusObjectType {
+  status: Boolean!
+}
+
+type GqlGetLocationBusinessStatusesObjectType {
+  businessStatuses: [GqlBusinessStatusObjectType!]!
+}
+
+type GqlGetAdditionalBusinessStatusesObjectType {
+  additionalBusinessStatuses: [GqlAdditionalBusinessStatusObjectType!]!
+}
+
+type GqlAssignLocationWorkshopAppointmentBusinessStatus {
+  status: Boolean!
+}
+
+type GqlUnassignLocationWorkshopAppointmentBusinessStatus {
+  status: Boolean!
+}
+
+type GqlAssignLocationWorkshopAdditionalAppointmentBusinessStatus {
+  status: Boolean!
+}
+
+type GqlUnassignLocationWorkshopAppointmentAdditionalBusinessStatus {
+  status: Boolean!
+}
+
+input GqlReorderWorkshopAppointmentBusinessStatusesInputType {
+  id: UUID!
+}
+
+type GqlReorderWorkshopAppointmentBusinessStatuses {
+  status: Boolean!
+}
+
+type GqlAvailabilityColorObjectType {
+  id: ID!
+  color: String!
+  minimalCapacity: Int!
+  maximumCapacity: Int
+}
+
+type GqlGetAvailabilityColorsObjectType {
+  availabilityColors: [GqlAvailabilityColorObjectType!]!
+}
+
+type GqlUpdateAvailabilityColor {
+  status: Boolean!
+}
+
+type GqlDeleteWorkshopConnectedLocationsObjectType {
+  status: Boolean!
+}
+
+type GqlCreateWorkshopConnectedLocationsObjectType {
+  status: Boolean!
+}
+
+type GqlGetWorkshopConnectedLocationsObjectType {
+  workshopConnectedLocations: [GqlConnectedLocationIdObjectType!]!
+}
+
+type GqlUpdateLocationOverbookingObjectType {
+  status: Boolean!
+}
+
+type GqlUpdateLocationMinimalOverbookingObjectType {
+  status: Boolean!
+}
+
+type GqlLocationOverbookingObjectType {
+  minimumOverbookingMultiplier: Float!
+  capacityOverbookingMultiplier: Float!
+  maxCapacityMultiplier: Float!
+}
+
+type GqlGetLocationOverbookingObjectType {
+  locationOverbooking: GqlLocationOverbookingObjectType!
+}
+
+type GqlGetWorkshopWorksObjectType {
+  works: [GqlWorkObjectType!]!
+}
+
+type GqlGetLocationWorksObjectType {
+  locationWorks: [GqlLocationWorkObjectType!]!
+}
+
+type GqlGetQualificationsObjectType {
+  qualifications: [GqlQualificationObjectType!]!
+}

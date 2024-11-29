@@ -1,0 +1,7 @@
+mutation CreateWorkshopWork($works: [GqlCreateWorkshopWorkInput!]!) {
+  createWorkshopWork(works: $works) {
+    works {
+      id
+    }
+  }
+}

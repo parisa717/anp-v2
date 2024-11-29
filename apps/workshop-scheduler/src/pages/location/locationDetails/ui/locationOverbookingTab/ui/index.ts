@@ -1,0 +1,1 @@
+export { MinimalLocationOverbookingAppliedInfoModal } from './MinimalLocationOverbookingAppliedInfoModal'

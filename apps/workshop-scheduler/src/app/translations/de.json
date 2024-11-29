@@ -1,0 +1,266 @@
+{
+  "pages": {
+    "businessStatus": {
+      "businessStatusList": {
+        "title": "Status",
+        "appointmentStatus": "Terminstatus",
+        "additionalStatus": "Zusatzstatus",
+        "addNewAppointmentStatus": "Neuen Terminstatus hinzufügen",
+        "addNewAdditionalStatus": "Neuen Zusatzstatus hinzufügen",
+        "table": {
+          "columnHeaders": {
+            "name": "Beschreibung",
+            "isDefault": "Standard",
+            "isActive": "Status",
+            "isHighlighted": "Hervorgehoben in Annahmeterminen"
+          },
+          "statuses": {
+            "active": "Aktiv",
+            "inactive": "Inaktiv"
+          },
+          "empty": "Keine Status gefunden"
+        },
+        "errors": {
+          "reorderDefaultStatus": {
+            "title": "Fehler",
+            "detail": "Der Standardstatus ist immer an erster Stelle"
+          }
+        }
+      },
+      "createAndEditBusinessStatusForm": {
+        "createTitle": "Terminstatus hinzufügen",
+        "editTitle": "Zusatzstatus bearbeiten",
+        "form": {
+          "fields": {
+            "name": "Beschreibung",
+            "isDefault": "Als Standard festlegen",
+            "isActive": "Status",
+            "isHighlighted": "Hervorgehoben in Annahmeterminen",
+            "addStatusButton": "Einen weiteren Terminstatus hinzufügen"
+          }
+        }
+      },
+      "unselectDefaultBusinessStatus": {
+        "title": "Standardstatus abwählen",
+        "header": {
+          "youUnselecting": "Sie entfernen gerade die Standardkennung bei",
+          "statusName": "Beschreibung",
+          "asDefaultAppointmentStatus": "als Standardterminstatus",
+          "asAdditionalStatus": "als Zusatzstatus"
+        },
+        "form": {
+          "fields": {
+            "isDefault": "Als Standard festlegen"
+          }
+        },
+        "instructions": "Ein Status muss als Standard festgelegt werden.\nWählen Sie aus den unten stehenden Status aus, welcher als Standard definiert werden soll"
+      },
+      "changeBusinessStatusConfirmation": {
+        "title": "Statusänderung",
+        "description": "Sind Sie sicher, dass Sie den Status ändern möchten?"
+      }
+    },
+    "businessStatusByLocation": {
+      "businessStatusByLocationList": {
+        "title": "Einrichtung Status und Überbuchung",
+        "appointmentStatus": "Terminstatus",
+        "additionalStatus": "Zusatzstatus",
+        "addNewAppointmentStatus": "Neuen Terminstatus hinzufügen",
+        "addNewAdditionalStatus": "Neuen Zusatzstatus hinzufügen",
+        "table": {
+          "columnHeaders": {
+            "name": "Beschreibung",
+            "isDefault": "Standard",
+            "isHighlighted": "Hervorgehoben in Annahmeterminen"
+          },
+          "empty": "Keine Status gefunden"
+        }
+      },
+      "createBusinessStatusByLocationForm": {
+        "title": "Terminstatus hinzufügen",
+        "form": {
+          "fields": {
+            "businessStatus": "Terminstatus"
+          },
+          "buttons": {
+            "addStatusButton": "weiteren Terminstatus hinzufügen",
+            "addAllStatusesButton": "alle Terminstatus hinzufügen"
+          }
+        }
+      },
+      "createAdditionalBusinessStatusByLocationForm": {
+        "title": "Zusatzstatus hinzufügen",
+        "form": {
+          "fields": {
+            "businessStatus": "Zusatzstatus"
+          },
+          "buttons": {
+            "addStatusButton": "weiteren Zusatzstatus hinzufügen",
+            "addAllStatusesButton": "alle Zusatzstatus hinzufügen"
+          }
+        }
+      },
+      "locationOverbooking": {
+        "warning": {
+          "title": "Überbuchung - Warnung"
+        },
+        "maximumLevel": {
+          "title": "Überbuchung - keine weiteren Termine möglich"
+        }
+      }
+    },
+    "location": {
+      "locationsList": {
+        "title": "Standortkonfiguration",
+        "message": "Information: Es werden nur aktive Standorte angezeigt.",
+        "table": {
+          "columnHeaders": {
+            "areaId": "Area-ID",
+            "locationId": "Standort-ID",
+            "locationName": "Standortname",
+            "brand": "Marke",
+            "zipCode": "Postleitzahl",
+            "city": "Stadt",
+            "address": "Adresse"
+          },
+          "empty": "Keine Standorte gefunden"
+        }
+      },
+      "locationDetails": {
+        "title": "Standortkonfiguration Details",
+        "locationTable": {
+          "headers": {
+            "locationId": "Standort-ID",
+            "locationName": "Standortname",
+            "brands": "Marke",
+            "zipCode": "Postleitzahl",
+            "city": "Stadt",
+            "address": "Adresse"
+          },
+          "empty": "Keine Standortdetails gefunden"
+        },
+        "areaTable": {
+          "headers": {
+            "areaId": "Area-ID",
+            "areaName": "Area-Name",
+            "country": "Land",
+            "dms": "DMS",
+            "crm": "CRM",
+            "zipCode": "Postleitzahl",
+            "city": "Stadt",
+            "address": "Adresse"
+          },
+          "empty": "Keine Bereichsdetails gefunden"
+        },
+        "locationWork": {
+          "tabTitle": "Durchzuführende Arbeiten",
+          "title": "Durchzuführende Arbeiten",
+          "buttons": {
+            "createLocationWork": "Durchzuführende Arbeiten hinzufügen"
+          }
+        },
+        "locationOverbooking": {
+          "title": "Überbuchungseinrichtung",
+          "description": "Überbuchung niedrigste Stufe",
+          "editMode": {
+            "confirmModal": {
+              "title": "Information",
+              "content": "Die Änderung wurde automatisch in die Einrichtung des Admin-Benutzers für diesen Standort übernommen. Bitte überprüfen Sie dies auf Richtigkeit."
+            }
+          }
+        },
+        "connectedLocations": {
+          "title": "Verbundene Standorte",
+          "description": "Wählen Sie Standorte aus, die im Abschnitt \"automatische Terminvorschläge weiterer Standorte\" im Terminvereinbarungsprozess berücksichtigt werden. Es stehen nur aktive Standorte zur Auswahl.",
+          "table": {
+            "headers": {
+              "locationId": "Standort-ID",
+              "locationName": "Standortname",
+              "brands": "Marke",
+              "zipCode": "Postleitzahl",
+              "city": "Stadt",
+              "address": "Adresse",
+              "connected": "Verbunden"
+            },
+            "empty": "Keine Standortdetails gefunden"
+          },
+          "dialog": {
+            "title": "Standortverbindung aufheben",
+            "description": "Sind Sie sich sicher, dass Sie den Standort abwählen möchten?"
+          }
+        }
+      }
+    },
+    "colorSetup": {
+      "colorSetupList": {
+        "title": "Farbeinstellung",
+        "addColor": "Farbe hinzufügen",
+        "editColors": "Bearbeiten",
+        "capacitiesColors": "Farben für Kapazitätsstufen",
+        "table": {
+          "columnHeaders": {
+            "color": "Farbe",
+            "capacityValue": "Wert der Kapazität [%]"
+          },
+          "empty": "Keine Farben gefunden"
+        }
+      },
+      "editColorSetup": {
+        "form": {
+          "validation": {
+            "firstCapacityMustStartWithZero": "Das Setup konnte nicht gespeichert werden, da die erste Kapazitätsstufe mit 0 beginnen muss.",
+            "capacityShouldHaveASpecifiedFormat": "Das Setup konnte nicht gespeichert werden, da die Werte im falschen Format eingetragen wurden. Zwischen dem Wert und dem Bindestrich darf kein Leerzeichen sein. Die letzte Kapazitätsstufe muss im Format >Wert eingegeben werden. Beispiele: 0-50, >100.",
+            "lastCapacityShouldNotBeGreaterThan100": "Das Setup konnte nicht gespeichert werden, da >100 der höchste Wert ist, der eingetragen werden kann.",
+            "lastCapacityShouldBeGreaterThanPrevious": "Das Setup konnte nicht gespeichert werden, da die letzte Kapazitätsstufe >Wert der vorherigen Abstufung eingetragen werden muss.",
+            "capacitiesShouldNotOverlap": "Das Setup konnte nicht gespeichert werden, da sich die eingetragenen Werte überschneiden.",
+            "capacitiesShouldNotHaveGaps": "Das Setup konnte nicht gespeichert werden, da es Lücken zwischen den Werten gibt."
+          }
+        }
+      }
+    },
+    "work": {
+      "title": "Durchzuführende Arbeiten",
+      "add": {
+        "title": "Durchzuführende Arbeit hinzufügen",
+        "defineWorkSetup": "Durchzuführende Arbeit definieren",
+        "assignLocations": "Standorte zuweisen",
+        "workSetupForm": {
+          "workName": "Beschreibung",
+          "qualification": "Produktives Team",
+          "status": "Status",
+          "active": "Aktiv",
+          "inactive": "Inaktiv",
+          "nameChangeable": "Beschreibung änderbar",
+          "capacityChangeable": "Kapazität änderbar",
+          "addWorkButton": "Eine weitere durchzuführende Arbeit hinzufügen",
+          "nextButton": "Weiter",
+          "cancelButton": "Abbrechen",
+          "skipAndSaveButton": "Überspringen und speichern"
+        }
+      }
+    }
+  },
+  "widgets": {
+    "baseLayout": {
+      "topbar": {
+        "title": "Serviceterminplaner Admin"
+      },
+      "menuItems": {
+        "mainMenu": "Hauptmenü",
+        "settings": "Einstellungen",
+        "dashboard": "Dashboard",
+        "appointments": "Terminübersicht",
+        "status": "Status",
+        "statusAndOverbookingConfiguration": "Status & Überbuchung Konfiguration",
+        "counterConfiguration": "Counter Konfiguration",
+        "serviceAdvisorConfiguration": "Serviceberater Konfiguration",
+        "teamConfiguration": "Team Konfiguration",
+        "userConfiguration": "Benutzer Konfiguration",
+        "workToBeCarriedOut": "Durchzuführende Arbeiten",
+        "locationConfiguration": "Standortkonfiguration",
+        "setupAlarmFunctionDepotList": "Einrichtung Alarmfunktion Depotliste",
+        "colorSetup": "Farbeinstellung"
+      }
+    }
+  }
+}
