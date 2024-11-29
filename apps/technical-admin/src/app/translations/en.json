@@ -101,12 +101,12 @@
         "EditAreaButton": "Edit",
         "addLocationButton": "Add Location",
         "details": {
-          "area": "Area",
-          "name": "Area name",
+          "areaId": "Area",
+          "areaName": "Area name",
           "country": "Country",
           "dms": "DMS",
           "crm": "CRM",
-          "postCode": "Zip-code:",
+          "zipCode": "Zip-code:",
           "city": "City",
           "address": "Address",
           "status": "Status"

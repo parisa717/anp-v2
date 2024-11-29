@@ -29,10 +29,10 @@ export const useColumns = () => {
       showClearButton: false,
       pt: {
         headerCell: {
-          className: 'pl-4 pr-1 text-center flex justify-center w-full w-[120px]',
+          className: 'text-center w-[110px]',
         },
         bodyCell: {
-          className: 'pl-4 pr-1 text-center w-full w-[120px]',
+          className: 'text-center  w-[110px]',
         },
       },
     },

@@ -37,21 +37,21 @@ export const LocationDetailsPage = () => {
   const translate = (key: string) => t(`pages.location.locationDetails.${key}`)
   const breadcrumbItems = useGetBreadcrumbItems()
   const areaColumns = useAreaColumns()
-  //const locationColumns = useLocationColumns()
+  const locationColumns = useLocationColumns()
 
-  //const { id = '' } = useParams<IdParam>()
-  //const { data: locationData, isLoading: isLocationDataLoading, isError: isErrorLocation } = useGetLocationQuery({ id })
+  const { id = '' } = useParams<IdParam>()
+  const { data: locationData, isLoading: isLocationDataLoading, isError: isErrorLocation } = useGetLocationQuery({ id })
 
-  // const {
-  //   data: areaData,
-  //   isLoading: isAreaDataLoading,
-  //   isError: isErrorArea,
-  // } = useGetAreaQuery({ id: locationData?.area?.id ?? '' }, { skip: !locationData?.area?.id })
+ const {
+   data: areaData,
+   isLoading: isAreaDataLoading,
+   isError: isErrorArea,
+ } = useGetAreaQuery({ id: locationData?.area?.id ?? '' }, { skip: !locationData?.area?.id })
 
-  // if (isErrorLocation || isErrorArea) {
-  //   //TODO: Add proper error handling
-  //   return 'Error'
-  // }
+   if (isErrorLocation || isErrorArea) {
+     //TODO: Add proper error handling
+     return 'Error'
+   }
 
   return (
     <main>
