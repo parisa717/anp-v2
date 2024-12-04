@@ -48,11 +48,7 @@ export const LocationDetailsPage = () => {
    isError: isErrorArea,
  } = useGetAreaQuery({ id: locationData?.area?.id ?? '' }, { skip: !locationData?.area?.id })
 
-   if (isErrorLocation || isErrorArea) {
-     //TODO: Add proper error handling
-     return 'Error'
-   }
-
+   
   return (
     <main>
       <BreadCrumb

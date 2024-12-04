@@ -1,10 +1,10 @@
 import { useTranslation } from '@nexus-ui/i18n'
+import { DataTable } from '@nexus-ui/ui'
 import { Button } from 'primereact/button'
 import { Outlet, useParams } from 'react-router-dom'
 
-import AreaDetailCard from './AreaDetailCard'
-import { DataTable } from '@nexus-ui/ui'
-import { useGetAreaQuery } from '@/entities/area'
+import {  GqlAreaObjectTypeEntity, useGetAreaQuery } from '@/entities/area'
+
 import { useAreaColumns } from '../lib/useAreaColumns'
 
 const dataTablePt = {
@@ -38,7 +38,12 @@ export const AreaDetailPage = () => {
 
   const { id = '' } = useParams<{ id: string }>()
 
-  const { data: areaData, isLoading: isAreaDataLoading } = useGetAreaQuery({ id })
+  const { data: areaData, isLoading :isAreaDataLoading , isError:isErrorArea} = useGetAreaQuery({ id })
+
+  if (isErrorArea) {
+    //TODO: Add proper error handling
+    return 'Error'
+  }
 
   const translate = (key: string) => t(`pages.areas.areaDetail.${key}`)
 
@@ -49,12 +54,13 @@ export const AreaDetailPage = () => {
 
         <Button severity="secondary" outlined label={translate('EditAreaButton')} />
       </div>
-      <DataTable
+     <DataTable<GqlAreaObjectTypeEntity[]>
         columns={areaColumns}
         data={areaData ? [areaData] : []}
         loading={isAreaDataLoading}
         pt={{ ...dataTablePt, root: { ...dataTablePt.root, 'data-cy': 'area-table' } }}
-        emptyMessage={translate('areaTable.empty')}
+        emptyMessage={translate('table.empty')}
+      
       />
 
       <Outlet />

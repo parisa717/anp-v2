@@ -124,7 +124,7 @@
             "status": "Status",
             "country": "Country"
           },
-          "empty": "Keine Area gefunden"
+          "empty": "No area details found"
         }
       }
     },
