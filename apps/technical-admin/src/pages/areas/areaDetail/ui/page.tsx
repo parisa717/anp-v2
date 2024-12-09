@@ -19,13 +19,13 @@ const dataTablePt = {
       className: 'bg-shade-000 border-0',
     },
     bodyCell: {
-      className: 'text-text-base-text-xl-semibold-lineheight-150 text-bluegray-700 border-0 p-1',
+      className: 'text-text-xl-semibold-lineheight-150 font-semibold text-bluegray-700 border-0 p-1',
     },
     headerCell: {
       className: 'p-1 pb-0',
     },
     headerTitle: {
-      className: 'text-text-base-regular-lineheight-150 text-bluegray-500 border-0',
+      className: 'text-bluegray-500 border-0 font-normal',
     },
   },
 }
@@ -48,9 +48,9 @@ export const AreaDetailPage = () => {
   const translate = (key: string) => t(`pages.areas.areaDetail.${key}`)
 
   return (
-    <div>
+    <main>
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-[35px] leading-none">{translate('title')}</h1>
+        <h1 className="text-headline">{translate('title')}</h1>
 
         <Button severity="secondary" outlined label={translate('EditAreaButton')} />
       </div>
@@ -64,6 +64,6 @@ export const AreaDetailPage = () => {
       />
 
       <Outlet />
-    </div>
+    </main>
   )
 }

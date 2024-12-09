@@ -2,7 +2,7 @@ import { RouteObject } from 'react-router-dom'
 
 import { authRequiredLoader, ROUTE_PATHS } from '@/shared/lib'
 
-import { AreaDetailPage } from './areaDetail/ui/page'
+import { AreaDetailPage } from './areaDetail/ui/Page'
 import { AreasListPage } from './areasList/ui/Page'
 import { CreateAreaPage } from './createArea/ui/Page'
 

@@ -84,6 +84,11 @@ export const  useAreaColumns = () => {
       field: 'isActive',
       header: translate('status'),
       body: (rowData: GqlAreaObjectTypeEntity) => rowData.isActive ? t('active') : t('inactive'),
+      pt: {
+        bodyCell: {
+          className: 'capitalize',
+        },
+      },
     }
   ]
   return columns

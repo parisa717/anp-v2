@@ -1,39 +1,16 @@
-import { ProfileButton, Sidebar, Topbar } from '@nexus-ui/ui'
-import { Button } from 'primereact/button'
-import { Divider } from 'primereact/divider'
+import { Sidebar, Topbar } from '@nexus-ui/ui'
 import { Menu } from 'primereact/menu'
-import { useTranslation } from 'react-i18next'
 import { Outlet } from 'react-router-dom'
 
-import { useGetCurrentUser } from '../lib/useGetCurrentUser'
 import { useMenuItems } from '../lib/useMenuItems'
 
 export const BaseLayout = () => {
-  const { isLoading, currentUserFullName, isLoggedIn } = useGetCurrentUser()
   const menuItems = useMenuItems()
-  const { t } = useTranslation()
-
-  if (isLoading) {
-    return 'Loading...'
-  }
 
   return (
     <div className="flex flex-col h-screen bg-bluegray-50 p-2">
       <div className="mb-2">
-        <Topbar
-          title="Admin Portal"
-          right={
-            <>
-              {currentUserFullName && <ProfileButton fullName={currentUserFullName} />}
-              {isLoggedIn && (
-                <>
-                  <Divider layout="vertical" className="p-0" />
-                  <Button icon="pi pi-sign-out" text aria-label={t('sign out')} data-cy="sign-out-button" />
-                </>
-              )}
-            </>
-          }
-        />
+        <Topbar title="Admin Portal" />
       </div>
 
       <div className="flex grow overflow-auto">

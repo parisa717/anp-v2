@@ -1,38 +1,12 @@
-import { aliasQuery, hasOperationName, successResponse } from '@nexus-ui/utils'
+import { GET_AREA_OPERATION_DEFAULT_RESPONSE } from '@cypress-fixtures'
+import { aliasQuery, errorResponse, hasOperationName, successResponse } from '@nexus-ui/utils'
 
 import { GqlAreaObjectTypeEntity } from '@/entities/area'
 
-import { AreaDetailPage } from './page'
+import { AreaDetailPage } from './Page'
 
 const AREA_TABLE = '[data-cy="area-table"]'
 const CELL = '[data-pc-section="bodycell"]'
-
-export const GET_AREA_OPERATION_DEFAULT_RESPONSE = {
-  getArea: {
-    id: '1',
-    code: '001',
-    name: 'AAC Albert Sigg GmbH',
-    address: {
-      id: '1',
-      country: {
-        id: '1',
-        name: 'Germany',
-      },
-      postCode: '00000',
-      city: 'Markkleeberg',
-      address: 'Magdeborner Str. 12',
-    },
-    dms: {
-      id: 'dms_1',
-      name: 'DMS System',
-    },
-    crm: {
-      id: 'crm_1',
-      name: 'CRM System',
-    },
-    isActive: false,
-  },
-}
 
 const AREA_DATA = GET_AREA_OPERATION_DEFAULT_RESPONSE.getArea
 
@@ -50,18 +24,6 @@ describe('AreaDetailsPage', () => {
       if (hasOperationName(req, 'GetArea')) {
         aliasQuery(req, 'GetArea')
         successResponse(req, GET_AREA_OPERATION_DEFAULT_RESPONSE)
-        const getAreaFields = (area: GqlAreaObjectTypeEntity) => [
-          area.code,
-          area.name,
-          area.address.country.name,
-          area.dms.name,
-          area.crm.name,
-          area.address.postCode,
-          area.address.city,
-          area.address.address,
-          area.isActive ? 'active' : 'inactive',
-        ]
-        verifyTableRendering(AREA_TABLE, getAreaFields(AREA_DATA))
       }
     })
 
@@ -69,6 +31,20 @@ describe('AreaDetailsPage', () => {
     cy.wait('@gqlGetAreaQuery')
   })
 
+  it('renders the Area table correctly', () => {
+    const getAreaFields = (area: GqlAreaObjectTypeEntity) => [
+      area.code,
+      area.name,
+      area.address.country.name,
+      area.dms.name,
+      area.crm.name,
+      area.address.postCode,
+      area.address.city,
+      area.address.address,
+      area.isActive ? 'active' : 'inactive',
+    ]
+    verifyTableRendering(AREA_TABLE, getAreaFields(AREA_DATA))
+  })
   it('renders an empty message when no area data is available', () => {
     cy.intercept('POST', import.meta.env.VITE_API_ENDPOINT, (req) => {
       if (hasOperationName(req, 'GetArea')) {
@@ -80,5 +56,23 @@ describe('AreaDetailsPage', () => {
     cy.mountWithProviders(<AreaDetailPage />)
     cy.wait('@gqlGetAreaQuery')
     cy.contains('No area details found').should('be.visible')
+  })
+
+  it('does not render table rows when GQL query errors', () => {
+    cy.intercept('POST', import.meta.env.VITE_API_ENDPOINT, (req) => {
+      if (hasOperationName(req, 'GetArea')) {
+        aliasQuery(req, 'GetArea')
+        errorResponse(req, {
+          message: 'User not authenticated',
+          path: ['currentUser'],
+          extensions: { code: 'UNAUTHENTICATED' },
+        })
+      }
+    })
+
+    cy.mountWithProviders(<AreaDetailPage />)
+    cy.wait('@gqlGetAreaQuery')
+
+    cy.contains('Error').should('be.visible')
   })
 })

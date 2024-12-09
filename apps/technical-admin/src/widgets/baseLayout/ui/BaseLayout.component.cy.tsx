@@ -35,9 +35,5 @@ describe('BaseLayout', () => {
     })
   })
 
-  it('renders the topbar with the app title, user info and sign out button', () => {
-    cy.get('[data-cy="topbar"]').should('include.text', 'AVAGAdminPortal').and('include.text', 'JDJohn Doe')
-    cy.get('[data-cy="sign-out-button"]').should('have.attr', 'aria-label', 'sign out')
-    cy.get('[data-cy="sign-out-button"]').get('[data-pc-section="icon"]').should('include.class', 'pi-sign-out')
-  })
+ 
 })

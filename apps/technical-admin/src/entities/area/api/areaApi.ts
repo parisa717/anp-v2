@@ -1,3 +1,5 @@
+import { cacher } from '@nexus-ui/utils'
+
 import { type ApiWithTransformResponse } from '@/shared/api'
 
 import { transformAreas } from '../lib/transformAreas'
@@ -13,6 +15,9 @@ type AreaApi = ApiWithTransformResponse<
 type TagTypes = AreaApi['TagTypes']
 type ApiEndpointDefinitions = AreaApi['ApiEndpointDefinitions']
 
+const AREA_TAG = 'AREA_STATUS'
+
+
 export const areaApi = api.enhanceEndpoints<TagTypes, ApiEndpointDefinitions>({
   endpoints: {
     GetAreas: {
@@ -20,6 +25,8 @@ export const areaApi = api.enhanceEndpoints<TagTypes, ApiEndpointDefinitions>({
     },
     GetArea: {
       transformResponse: (response: GetAreaQuery) => response.getArea,
+      providesTags: cacher.cacheByIdArgProperty(AREA_TAG),
+
     },
   },
 })
