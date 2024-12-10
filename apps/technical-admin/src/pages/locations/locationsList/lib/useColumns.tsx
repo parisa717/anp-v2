@@ -1,14 +1,29 @@
-import { DataTableDropdown, DataTableSearchInput } from '@nexus-ui/ui'
-import { FilterMatchMode } from 'primereact/api'
+import { DataTableDropdown, DataTableMultiSelect, DataTableSearchInput } from '@nexus-ui/ui'
+import { FilterMatchMode, FilterService } from 'primereact/api'
 import { Button } from 'primereact/button'
 import { ColumnProps } from 'primereact/column'
 import { Link } from 'react-router-dom'
 
-import { LocationEntity } from '@/entities/location'
+import { useGetBrandsQuery } from '@/entities/brand'
+import { BrandsTagsCellTemplate, LocationEntity } from '@/entities/location'
 import { pageUrls } from '@/shared/lib'
 import { StatusCell } from '@/shared/ui'
 
+
+FilterService.register('custom_brands', (brands: LocationEntity['brands'], filterValue: string[]) => {
+    if (!filterValue || !brands) return true
+    if (filterValue.length === 0) return true
+    return brands.some(({ id }) => filterValue.includes(id))
+  })
+
+
 export const useColumns = () => {
+    const { data: brands, isError, isLoading } = useGetBrandsQuery()
+
+    if (isError) {
+      //TODO: Add proper error handling
+      console.error('Error fetching brands')
+    }
   const linkTemplate = (entity: LocationEntity) => {
     return (
       <Link to={pageUrls.locations.edit(entity.id)}>
@@ -65,20 +80,26 @@ export const useColumns = () => {
       showClearButton: false,
     },
     {
-      field: 'brands.name',
-      filterMatchMode: FilterMatchMode.CUSTOM,
-      header: 'Marke',
-      sortable: true,
-      filter: true,
-
-      showFilterMenu: false,
-      showClearButton: false,
-
-      pt: {
-        headerCell: {
-          className: 'min-w-64',
+        field: 'brands',
+        filterMatchMode: FilterMatchMode.CUSTOM,
+        header: "Marke",
+        sortable: true,
+        filter: true,
+        filterElement: DataTableMultiSelect({
+          options: brands,
+          loading: isLoading,
+          optionLabel: 'code',
+          optionValue: 'id',
+          maxSelectedLabels: 1,
+        }),
+        showFilterMenu: false,
+        showClearButton: false,
+        body: BrandsTagsCellTemplate,
+        pt: {
+          headerCell: {
+            className: 'min-w-64',
+          },
         },
-      },
     },
     {
       field: 'address.postCode',
