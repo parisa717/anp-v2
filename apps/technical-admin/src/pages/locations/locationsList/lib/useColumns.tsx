@@ -2,6 +2,7 @@ import { DataTableDropdown, DataTableMultiSelect, DataTableSearchInput } from '@
 import { FilterMatchMode, FilterService } from 'primereact/api'
 import { Button } from 'primereact/button'
 import { ColumnProps } from 'primereact/column'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { useGetBrandsQuery } from '@/entities/brand'
@@ -9,21 +10,24 @@ import { BrandsTagsCellTemplate, LocationEntity } from '@/entities/location'
 import { pageUrls } from '@/shared/lib'
 import { StatusCell } from '@/shared/ui'
 
-
 FilterService.register('custom_brands', (brands: LocationEntity['brands'], filterValue: string[]) => {
-    if (!filterValue || !brands) return true
-    if (filterValue.length === 0) return true
-    return brands.some(({ id }) => filterValue.includes(id))
-  })
-
+  if (!filterValue || !brands) return true
+  if (filterValue.length === 0) return true
+  return brands.some(({ id }) => filterValue.includes(id))
+})
 
 export const useColumns = () => {
-    const { data: brands, isError, isLoading } = useGetBrandsQuery()
+  const { t } = useTranslation()
 
-    if (isError) {
-      //TODO: Add proper error handling
-      console.error('Error fetching brands')
-    }
+  const { data: brands, isError, isLoading } = useGetBrandsQuery()
+
+  if (isError) {
+    //TODO: Add proper error handling
+    console.error('Error fetching brands')
+  }
+
+  const translate = (key: string) => t(`pages.locations.locationsList.table.${key}`)
+
   const linkTemplate = (entity: LocationEntity) => {
     return (
       <Link to={pageUrls.locations.edit(entity.id)}>
@@ -41,69 +45,59 @@ export const useColumns = () => {
   const columns: ColumnProps[] = [
     {
       field: 'area.id',
-      header: 'Area-ID',
+      header: translate('columnHeaders.areaId'),
       sortable: true,
       filter: true,
       filterMatchMode: FilterMatchMode.CONTAINS,
       filterElement: DataTableSearchInput,
       showFilterMenu: false,
       showClearButton: false,
-      pt: {
-        bodyCell: {
-          className: 'text-center ',
-        },
-      },
     },
     {
       field: 'id',
-      header: 'Standort-ID',
+      header: translate('columnHeaders.locationId'),
       sortable: true,
       filter: true,
       filterMatchMode: FilterMatchMode.CONTAINS,
       filterElement: DataTableSearchInput,
       showFilterMenu: false,
       showClearButton: false,
+    },
+    {
+      field: 'name',
+      header: translate('columnHeaders.locationName'),
+      sortable: true,
+      filter: true,
+      filterMatchMode: FilterMatchMode.CONTAINS,
+      filterElement: DataTableSearchInput,
+      showFilterMenu: false,
+      showClearButton: false,
+    },
+    {
+      field: 'brands.name',
+      filterMatchMode: FilterMatchMode.CUSTOM,
+      header: translate('columnHeaders.brand'),
+      sortable: true,
+      filter: true,
+      filterElement: DataTableMultiSelect({
+        options: brands,
+        loading: isLoading,
+        optionLabel: 'code',
+        optionValue: 'id',
+        maxSelectedLabels: 1,
+      }),
+      showFilterMenu: false,
+      showClearButton: false,
+      body: BrandsTagsCellTemplate,
       pt: {
-        bodyCell: {
-          className: 'text-center ',
+        headerCell: {
+          className: 'min-w-64',
         },
       },
     },
     {
-      field: 'name',
-      header: 'Standortname',
-      sortable: true,
-      filter: true,
-      filterMatchMode: FilterMatchMode.CONTAINS,
-      filterElement: DataTableSearchInput,
-      showFilterMenu: false,
-      showClearButton: false,
-    },
-    {
-        field: 'brands',
-        filterMatchMode: FilterMatchMode.CUSTOM,
-        header: "Marke",
-        sortable: true,
-        filter: true,
-        filterElement: DataTableMultiSelect({
-          options: brands,
-          loading: isLoading,
-          optionLabel: 'code',
-          optionValue: 'id',
-          maxSelectedLabels: 1,
-        }),
-        showFilterMenu: false,
-        showClearButton: false,
-        body: BrandsTagsCellTemplate,
-        pt: {
-          headerCell: {
-            className: 'min-w-64',
-          },
-        },
-    },
-    {
       field: 'address.postCode',
-      header: 'Postleitzahl',
+      header: translate('columnHeaders.zipCode'),
       sortable: true,
       filter: true,
       filterMatchMode: FilterMatchMode.CONTAINS,
@@ -113,7 +107,7 @@ export const useColumns = () => {
     },
     {
       field: 'address.city',
-      header: 'Stadt',
+      header: translate('columnHeaders.city'),
       sortable: true,
       filter: true,
       filterMatchMode: FilterMatchMode.CONTAINS,
@@ -123,7 +117,7 @@ export const useColumns = () => {
     },
     {
       field: 'address.address',
-      header: 'Adresse',
+      header: translate('columnHeaders.address'),
       sortable: true,
       filter: true,
       filterMatchMode: FilterMatchMode.CONTAINS,
@@ -131,31 +125,22 @@ export const useColumns = () => {
       showFilterMenu: false,
       showClearButton: false,
     },
-    {
-      field: 'address.country.name',
-      header: 'Land',
-      sortable: true,
-      filter: true,
-      filterMatchMode: FilterMatchMode.CONTAINS,
-      filterElement: DataTableSearchInput,
-      showFilterMenu: false,
-      showClearButton: false,
-    },
+
     {
       field: 'isActive',
       filterMatchMode: FilterMatchMode.EQUALS,
       header: 'Status',
-      body: (location: LocationEntity) => <StatusCell data={location} />,
+      body: (location: LocationEntity) => <StatusCell data={location}/>,
       sortable: true,
       filter: true,
       filterElement: DataTableDropdown({
         options: [
           {
-            label: 'Active',
+            label: t('active'),
             value: true,
           },
           {
-            label: 'inActive',
+            label: t('inactive'),
             value: false,
           },
         ],
