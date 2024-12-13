@@ -74,7 +74,7 @@ export const useColumns = () => {
       showClearButton: false,
     },
     {
-      field: 'brands.name',
+      field: 'brands',
       filterMatchMode: FilterMatchMode.CUSTOM,
       header: translate('columnHeaders.brand'),
       sortable: true,

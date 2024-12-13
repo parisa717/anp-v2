@@ -19,18 +19,16 @@ export const LocationsListPage = () => {
   }
   <h1 className="text-headline">{translate('title')}</h1>
 
-
   return (
     <main>
-          <h1 className="text-headline">{translate('title')}</h1>
-
+      <h1 className="text-headline">{translate('title')}</h1>
 
       <DataTable<LocationEntity[]>
         removableSort
         columns={columns}
         data={locations || []}
         loading={isLoading}
-        emptyMessage={'empty'}
+        emptyMessage={translate('table.empty')}
         filterDisplay="row"
         pt={{
           column: {
