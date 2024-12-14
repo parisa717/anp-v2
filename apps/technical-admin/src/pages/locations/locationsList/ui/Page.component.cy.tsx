@@ -14,6 +14,7 @@ const SORT = '[data-pc-section="sort"]'
 // Add new selectors
 const FILTER = '[data-cy="search-input"]'
 const DROPDOWN = '[data-pc-name="multiselect"]'
+const DROPDOWNACTIVE = '[data-cy="datatable-dropdown"]'
 
 const sortTable = (colIndex: number, base: string[], sorted: string[]) => {
   const [firstBase, lastBase] = base
@@ -25,6 +26,7 @@ const sortTable = (colIndex: number, base: string[], sorted: string[]) => {
 
   // Ascending
   cy.get(SORT).eq(colIndex).click()
+
   cy.get(ROW).first().find(CELL).eq(colIndex).should('have.text', firstSorted)
   cy.get(ROW).last().find(CELL).eq(colIndex).should('have.text', lastSorted)
 
@@ -66,7 +68,24 @@ const filterTableByDropdown = (
   cy.get(DROPDOWN).find(CLEAR).realClick()
   cy.get(ROW).should('have.length', lengthBeforeQuery)
 }
+const filterTableByDropdownActive = (
+  colIndex: number,
+  query: string,
+  lengthBeforeQuery: number,
+  lengthAfterQuery: number,
+) => {
+  const CLEAR = '[data-pc-section="clearicon"]'
+  const ITEM = '[data-pc-section="item"]'
 
+  cy.get(ROW).should('have.length', lengthBeforeQuery)
+
+  cy.get(DROPDOWNACTIVE).eq(colIndex).realClick()
+  cy.get(ITEM).contains(query, { matchCase: false }).realClick()
+  cy.get(ROW).should('have.length', lengthAfterQuery)
+
+  cy.get(DROPDOWNACTIVE).find(CLEAR).realClick()
+  cy.get(ROW).should('have.length', lengthBeforeQuery)
+}
 describe('LocationsListPage', () => {
   beforeEach(() => {
     cy.intercept('POST', import.meta.env.VITE_API_ENDPOINT, (req) => {
@@ -77,7 +96,11 @@ describe('LocationsListPage', () => {
 
       if (hasOperationName(req, 'GetBrands')) {
         aliasQuery(req, 'GetBrands')
-        successResponse(req, GET_BRANDS_OPERATION_DEFAULT_RESPONSE)
+        successResponse(req, {
+          getBrands: {
+            data: GET_BRANDS_OPERATION_DEFAULT_RESPONSE,
+          },
+        })
       }
     })
 
@@ -106,10 +129,7 @@ describe('LocationsListPage', () => {
   })
 
   it('sorts the table on sortable fields', () => {
-    console.log([
-      LOCATIONS[0].brands.map((b) => b.code).join(''),
-      LOCATIONS[LOCATIONS.length - 1].brands.map((b) => b.code).join(''),
-    ])
+ 
     sortTable(
       0,
       [LOCATIONS[0].area.id, LOCATIONS[LOCATIONS.length - 1].area.id],
@@ -125,8 +145,7 @@ describe('LocationsListPage', () => {
       [LOCATIONS[0].name, LOCATIONS[LOCATIONS.length - 1].name],
       [LOCATIONS[0].name, LOCATIONS[LOCATIONS.length - 1].name],
     )
-    
-    
+
     sortTable(
       3,
       [
@@ -160,15 +179,18 @@ describe('LocationsListPage', () => {
   it('filters the table on all fields', () => {
     cy.mountWithProviders(<LocationsListPage />)
     cy.wait('@gqlGetLocationsQuery')
+    
+
+    console.log(BRANDS, 'LOCATIONS')
 
     filterTableBySearch(0, LOCATIONS[0].area.id, LOCATIONS.length, 1)
     filterTableBySearch(1, LOCATIONS[0].id, LOCATIONS.length, 1)
     filterTableBySearch(2, LOCATIONS[0].name, LOCATIONS.length, 1)
-    filterTableByDropdown(0, BRANDS[0].code, LOCATIONS.length, 1)
+    filterTableByDropdown(0, BRANDS[1].code, LOCATIONS.length, 1)
     filterTableBySearch(3, LOCATIONS[0].address.postCode, LOCATIONS.length, 1)
     filterTableBySearch(4, LOCATIONS[0].address.city, LOCATIONS.length, 1)
     filterTableBySearch(5, LOCATIONS[0].address.address, LOCATIONS.length, 1)
-    filterTableByDropdown(1, 'Active', LOCATIONS.length, 1)
+    filterTableByDropdownActive(1, 'Active', LOCATIONS.length, 3)
   })
 
   it('renders empty message when locations array is empty', () => {

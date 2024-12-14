@@ -30,13 +30,7 @@ export const LocationsListPage = () => {
         loading={isLoading}
         emptyMessage={translate('table.empty')}
         filterDisplay="row"
-        pt={{
-          column: {
-            sortIcon: {
-              className: 'text-theme-primary',
-            },
-          },
-        }}
+       
       />
 
       <Outlet />

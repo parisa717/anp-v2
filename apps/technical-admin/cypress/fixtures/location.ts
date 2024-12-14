@@ -7,7 +7,7 @@ export const GET_LOCATIONS_OPERATION_DEFAULT_RESPONSE: GetLocationsQuery = {
         id: '1',
         code: '001',
         name: 'AAC Albert Sigg GmbH',
-        isActive: true,
+        isActive: false,
         address: {
           id: '1',
           country: {
@@ -28,6 +28,11 @@ export const GET_LOCATIONS_OPERATION_DEFAULT_RESPONSE: GetLocationsQuery = {
             id: 'brand_1',
             code: 'Opel',
             isWorkshopDefault: true,
+          },
+          {
+            id: 'brand_2',
+            code: 'Kia',
+            isWorkshopDefault: false,
           }
         ],
       },

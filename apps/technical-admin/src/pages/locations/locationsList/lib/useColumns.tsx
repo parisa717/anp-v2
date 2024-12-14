@@ -149,6 +149,11 @@ export const useColumns = () => {
       }),
       showFilterMenu: false,
       showClearButton: false,
+      pt:{
+        root: {
+          'data-pc-name': 'multiselect',
+        }
+      }
     },
     {
       body: linkTemplate,
