@@ -2,13 +2,14 @@ import { DataTableDropdown, DataTableMultiSelect, DataTableSearchInput } from '@
 import { FilterMatchMode, FilterService } from 'primereact/api'
 import { Button } from 'primereact/button'
 import { ColumnProps } from 'primereact/column'
+import { Dropdown } from 'primereact/dropdown'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { useGetBrandsQuery } from '@/entities/brand'
 import { BrandsTagsCellTemplate, LocationEntity } from '@/entities/location'
 import { pageUrls } from '@/shared/lib'
-import { StatusCell } from '@/shared/ui'
+
 
 FilterService.register('custom_brands', (brands: LocationEntity['brands'], filterValue: string[]) => {
   if (!filterValue || !brands) return true
@@ -20,7 +21,18 @@ export const useColumns = () => {
   const { t } = useTranslation()
 
   const { data: brands, isError, isLoading } = useGetBrandsQuery()
+  const statusOptions = [
 
+    {
+  label:t('active'),
+  value: true
+    },
+    {
+      label: t('inactive'),
+      value: false
+    },
+    
+  ]
   if (isError) {
     //TODO: Add proper error handling
     console.error('Error fetching brands')
@@ -130,7 +142,16 @@ export const useColumns = () => {
       field: 'isActive',
       filterMatchMode: FilterMatchMode.EQUALS,
       header: 'Status',
-      body: (location: LocationEntity) => <StatusCell data={location}/>,
+      body: (location: LocationEntity) => <Dropdown
+      pt={{
+        trigger: {
+          'data-cy': 'datatable-dropdown-trigger',
+          className: 'text-input-icon',
+        },
+      }}
+     value={location.isActive}
+      options={statusOptions}
+      />,
       sortable: true,
       filter: true,
       filterElement: DataTableDropdown({
@@ -149,11 +170,7 @@ export const useColumns = () => {
       }),
       showFilterMenu: false,
       showClearButton: false,
-      pt:{
-        root: {
-          'data-pc-name': 'multiselect',
-        }
-      }
+     
     },
     {
       body: linkTemplate,
