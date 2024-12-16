@@ -17,7 +17,6 @@ export const LocationsListPage = () => {
     //TODO: Add proper error handling
     return 'Error'
   }
-  ;<h1 className="text-headline">{translate('title')}</h1>
 
   return (
     <main>
