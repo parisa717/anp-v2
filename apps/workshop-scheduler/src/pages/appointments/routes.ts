@@ -12,7 +12,6 @@ export const appointmentsRoutes: RouteObject = {
   children: [
     {
       path: ROUTE_PATHS.Appointments.Book.Root,
-
       lazy: async () => {
         const { BookAppointmentPage } = await import('./bookAppointment/ui/Page')
         return { Component: BookAppointmentPage }

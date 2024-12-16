@@ -33,7 +33,7 @@ export const GET_LOCATIONS_OPERATION_DEFAULT_RESPONSE: GetLocationsQuery = {
             id: 'brand_2',
             code: 'Kia',
             isWorkshopDefault: false,
-          }
+          },
         ],
       },
       {

@@ -17,7 +17,7 @@ export const LocationsListPage = () => {
     //TODO: Add proper error handling
     return 'Error'
   }
-  <h1 className="text-headline">{translate('title')}</h1>
+  ;<h1 className="text-headline">{translate('title')}</h1>
 
   return (
     <main>
@@ -30,7 +30,6 @@ export const LocationsListPage = () => {
         loading={isLoading}
         emptyMessage={translate('table.empty')}
         filterDisplay="row"
-       
       />
 
       <Outlet />

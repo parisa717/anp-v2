@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom'
 
-import {  areasRoutes } from '@/pages/areas'
+import { areasRoutes } from '@/pages/areas'
 import { authRoutes } from '@/pages/auth'
 import { brandsRoutes } from '@/pages/brands'
 import { locationsRoutes } from '@/pages/locations'

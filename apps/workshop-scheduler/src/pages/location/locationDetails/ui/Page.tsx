@@ -42,18 +42,17 @@ export const LocationDetailsPage = () => {
 
   const { id = '' } = useParams<IdParam>()
   const { data: locationData, isLoading: isLocationDataLoading, isError: isErrorLocation } = useGetLocationQuery({ id })
+  const {
+    data: areaData,
+    isLoading: isAreaDataLoading,
+    isError: isErrorArea,
+  } = useGetAreaQuery({ id: locationData?.area?.id ?? '' }, { skip: !locationData?.area?.id })
 
- const {
-   data: areaData,
-   isLoading: isAreaDataLoading,
-   isError: isErrorArea,
- } = useGetAreaQuery({ id: locationData?.area?.id ?? '' }, { skip: !locationData?.area?.id })
-
-   
   if (isErrorLocation || isErrorArea) {
     //TODO: Add proper error handling
     return 'Error'
   }
+
   return (
     <main>
       <BreadCrumb
@@ -72,7 +71,7 @@ export const LocationDetailsPage = () => {
         pt={{ ...dataTablePt, root: { ...dataTablePt.root, 'data-cy': 'area-table' } }}
         emptyMessage={translate('areaTable.empty')}
       />
-       <DataTable
+      <DataTable
         columns={locationColumns}
         data={locationData ? [locationData] : []}
         loading={isLocationDataLoading}
@@ -80,7 +79,7 @@ export const LocationDetailsPage = () => {
         emptyMessage={translate('locationTable.empty')}
       />
       <LocationDetailsTabs />
-      <Outlet /> 
+      <Outlet />
     </main>
   )
 }

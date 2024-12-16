@@ -4,11 +4,7 @@ import type { ApiWithTransformResponse } from '@/shared/api'
 
 import { transformLocations } from '../lib/transformLocations'
 import { LocationEntity } from '../model/types'
-import {
-  api,
-  GetLocationsQuery,
-} from './Location.generated'
-
+import { api, GetLocationsQuery } from './Location.generated'
 
 type LocationApi = ApiWithTransformResponse<
   typeof api,
@@ -30,4 +26,4 @@ export const locationApi = api.enhanceEndpoints<TagTypes, ApiEndpointDefinitions
   },
 })
 
-export const { useCreateLocationMutation , useGetLocationsQuery } = locationApi
+export const { useCreateLocationMutation, useGetLocationsQuery } = locationApi

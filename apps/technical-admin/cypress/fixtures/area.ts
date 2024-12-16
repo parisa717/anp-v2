@@ -233,7 +233,6 @@ export const CREATE_AREA_OPERATION_DEFAULT_RESPONSE = {
   code: 'Test Area',
 }
 
-
 export const GET_AREA_OPERATION_DEFAULT_RESPONSE = {
   getArea: {
     id: '1',

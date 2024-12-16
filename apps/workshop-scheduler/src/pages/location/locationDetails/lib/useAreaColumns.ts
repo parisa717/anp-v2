@@ -1,7 +1,7 @@
 import { useTranslation } from '@nexus-ui/i18n'
 import { ColumnProps } from 'primereact/column'
 
-export const  useAreaColumns = () => {
+export const useAreaColumns = () => {
   const { t } = useTranslation()
 
   const translate = (key: string) => t(`pages.location.locationDetails.areaTable.headers.${key}`)

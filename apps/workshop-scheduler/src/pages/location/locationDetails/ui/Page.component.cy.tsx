@@ -43,7 +43,6 @@ describe('LocationDetailsPage', () => {
     cy.intercept('POST', import.meta.env.VITE_API_ENDPOINT, (req) => {
       if (hasOperationName(req, 'GetLocation')) {
         const getAreaFields = (area: AreaEntity) => [
-          
           area.code,
           area.name,
           area.address.country.name,

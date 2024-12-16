@@ -10,7 +10,6 @@ import { useGetBrandsQuery } from '@/entities/brand'
 import { BrandsTagsCellTemplate, LocationEntity } from '@/entities/location'
 import { pageUrls } from '@/shared/lib'
 
-
 FilterService.register('custom_brands', (brands: LocationEntity['brands'], filterValue: string[]) => {
   if (!filterValue || !brands) return true
   if (filterValue.length === 0) return true
@@ -22,16 +21,14 @@ export const useColumns = () => {
 
   const { data: brands, isError, isLoading } = useGetBrandsQuery()
   const statusOptions = [
-
     {
-  label:t('active'),
-  value: true
+      label: t('active'),
+      value: true,
     },
     {
       label: t('inactive'),
-      value: false
+      value: false,
     },
-    
   ]
   if (isError) {
     //TODO: Add proper error handling
@@ -142,16 +139,18 @@ export const useColumns = () => {
       field: 'isActive',
       filterMatchMode: FilterMatchMode.EQUALS,
       header: 'Status',
-      body: (location: LocationEntity) => <Dropdown
-      pt={{
-        trigger: {
-          'data-cy': 'datatable-dropdown-trigger',
-          className: 'text-input-icon',
-        },
-      }}
-     value={location.isActive}
-      options={statusOptions}
-      />,
+      body: (location: LocationEntity) => (
+        <Dropdown
+          pt={{
+            trigger: {
+              'data-cy': 'datatable-dropdown-trigger',
+              className: 'text-input-icon',
+            },
+          }}
+          value={location.isActive}
+          options={statusOptions}
+        />
+      ),
       sortable: true,
       filter: true,
       filterElement: DataTableDropdown({
@@ -170,7 +169,6 @@ export const useColumns = () => {
       }),
       showFilterMenu: false,
       showClearButton: false,
-     
     },
     {
       body: linkTemplate,

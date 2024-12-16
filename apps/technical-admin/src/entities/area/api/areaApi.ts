@@ -17,7 +17,6 @@ type ApiEndpointDefinitions = AreaApi['ApiEndpointDefinitions']
 
 const AREA_TAG = 'AREA_STATUS'
 
-
 export const areaApi = api.enhanceEndpoints<TagTypes, ApiEndpointDefinitions>({
   endpoints: {
     GetAreas: {
@@ -26,7 +25,6 @@ export const areaApi = api.enhanceEndpoints<TagTypes, ApiEndpointDefinitions>({
     GetArea: {
       transformResponse: (response: GetAreaQuery) => response.getArea,
       providesTags: cacher.cacheByIdArgProperty(AREA_TAG),
-
     },
   },
 })

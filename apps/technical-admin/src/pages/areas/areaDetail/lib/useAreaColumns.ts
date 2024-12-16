@@ -1,12 +1,9 @@
 import { useTranslation } from '@nexus-ui/i18n'
-import { ColumnProps } from 'primereact/column';
+import { ColumnProps } from 'primereact/column'
 
-import { GqlAreaObjectTypeEntity } from '@/entities/area';
+import { GqlAreaObjectTypeEntity } from '@/entities/area'
 
-
-
-
-export const  useAreaColumns = () => {
+export const useAreaColumns = () => {
   const { t } = useTranslation()
 
   const translate = (key: string) => t(`pages.areas.areaDetail.details.${key}`)
@@ -74,7 +71,6 @@ export const  useAreaColumns = () => {
           className: 'w-[12.5%] min-w-[178px]',
         },
       },
-      
     },
     {
       field: 'address.address',
@@ -83,13 +79,8 @@ export const  useAreaColumns = () => {
     {
       field: 'isActive',
       header: translate('status'),
-      body: (rowData: GqlAreaObjectTypeEntity) => rowData.isActive ? t('active') : t('inactive'),
-      pt: {
-        bodyCell: {
-          className: 'capitalize',
-        },
-      },
-    }
+      body: (rowData: GqlAreaObjectTypeEntity) => (rowData.isActive ? t('active') : t('inactive')),
+    },
   ]
   return columns
 }

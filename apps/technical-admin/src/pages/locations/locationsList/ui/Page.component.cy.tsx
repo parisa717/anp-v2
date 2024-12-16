@@ -129,7 +129,6 @@ describe('LocationsListPage', () => {
   })
 
   it('sorts the table on sortable fields', () => {
- 
     sortTable(
       0,
       [LOCATIONS[0].area.id, LOCATIONS[LOCATIONS.length - 1].area.id],
@@ -179,7 +178,6 @@ describe('LocationsListPage', () => {
   it('filters the table on all fields', () => {
     cy.mountWithProviders(<LocationsListPage />)
     cy.wait('@gqlGetLocationsQuery')
-    
 
     console.log(BRANDS, 'LOCATIONS')
 
