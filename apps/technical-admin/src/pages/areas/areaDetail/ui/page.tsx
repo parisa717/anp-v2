@@ -56,6 +56,7 @@ export const AreaDetailPage = () => {
     <main>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-headline">{translate('title')}</h1>
+
         <Button severity="secondary" outlined label={translate('EditAreaButton')} onClick={handleEditAreaClick} />
       </div>
       <DataTable<GqlAreaObjectTypeEntity[]>
