@@ -1,9 +1,10 @@
 import { useTranslation } from '@nexus-ui/i18n'
 import { DataTable } from '@nexus-ui/ui'
 import { Button } from 'primereact/button'
-import { Outlet, useParams } from 'react-router-dom'
+import { Outlet, useNavigate, useParams } from 'react-router-dom'
 
 import { GqlAreaObjectTypeEntity, useGetAreaQuery } from '@/entities/area'
+import { pageUrls } from '@/shared/lib'
 
 import { useAreaColumns } from '../lib/useAreaColumns'
 
@@ -31,13 +32,18 @@ const dataTablePt = {
 }
 
 export const AreaDetailPage = () => {
+  const { id = '' } = useParams<{ id: string }>()
+
+  const navigate = useNavigate()
+
+  const handleEditAreaClick = () => navigate(pageUrls.areas.edit(id))
   const { t } = useTranslation()
 
   const areaColumns = useAreaColumns()
 
-  const { id = '' } = useParams<{ id: string }>()
 
   const { data: areaData, isLoading: isAreaDataLoading, isError: isErrorArea } = useGetAreaQuery({ id })
+
 
   if (isErrorArea) {
     //TODO: Add proper error handling
@@ -50,8 +56,7 @@ export const AreaDetailPage = () => {
     <main>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-headline">{translate('title')}</h1>
-
-        <Button severity="secondary" outlined label={translate('EditAreaButton')} />
+        <Button severity="secondary" outlined label={translate('EditAreaButton')} onClick={handleEditAreaClick} />
       </div>
       <DataTable<GqlAreaObjectTypeEntity[]>
         columns={areaColumns}
