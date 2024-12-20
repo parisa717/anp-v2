@@ -3,7 +3,7 @@ export const WORKSHOP_SCHEDULER_URL = 'https://workshop-scheduler-gateway.nexus.
 
 export const GRAPHQL_SCHEMAS_PATH = 'src/schemas'
 
-const MISC_MOCKED_OPERATIONS = ['GetArea', 'GetCurrentUser', 'GetLocation', 'GetLocations']
+const MISC_MOCKED_OPERATIONS = ['GetCurrentUser', 'GetLocation', 'GetLocations']
 
 const MOCKED_OPERATIONS_TECHNICAL_ADMIN = [
   'GetAreas',

@@ -9,7 +9,7 @@ import { api, GetAreaQuery, GetAreasQuery } from './Area.generated'
 type AreaApi = ApiWithTransformResponse<
   typeof api,
   ['GetAreas', 'GetArea'],
-  { GetAreas: AreaEntity[]; GetArea: GqlAreaObjectTypeEntity | null }
+  { GetAreas: AreaEntity[]; GetArea: GqlAreaObjectTypeEntity }
 >
 
 type TagTypes = AreaApi['TagTypes']

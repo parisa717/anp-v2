@@ -63,6 +63,67 @@ type GqlUpdateBrandObjectType {
   status: Boolean!
 }
 
+type GqlGetAreaObjectType {
+  """
+  Area ID
+  """
+  id: UUID!
+
+  """
+  Area code
+  """
+  code: String!
+
+  """
+  Area name
+  """
+  name: String!
+
+  """
+  Is Area active
+  """
+  isActive: Boolean!
+
+  """
+  Address
+  """
+  address: GqlGetAreaAddressObjectType!
+}
+
+type GqlGetAreaAddressObjectType {
+  """
+  Country
+  """
+  country: GqlGetAreaCountryObjectType!
+
+  """
+  Postcode
+  """
+  postCode: String!
+
+  """
+  City
+  """
+  city: String!
+
+  """
+  Address (Street, house number/flat number)
+  """
+  address: String!
+}
+
+type GqlGetAreaCountryObjectType {
+  """
+  Country ID
+  """
+  id: UUID!
+
+  """
+  Country name
+  """
+  name: String!
+}
+
 type Query {
   """
   This method lists Brands
@@ -78,6 +139,16 @@ type Query {
     """
     id: UUID!
   ): GqlGetBrandObjectType!
+
+  """
+  This method returns Area
+  """
+  getArea(
+    """
+    Area ID
+    """
+    id: UUID!
+  ): GqlGetAreaObjectType
 }
 
 type Mutation {

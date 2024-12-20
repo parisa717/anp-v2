@@ -4,7 +4,6 @@ schema {
 
 type Query {
   currentUser: User
-  getArea(id: UUID!): GqlAreaObjectType!
   getLocation(id: UUID!): GqlLocationObjectType!
   getLocations: GqlGetLocationsObjectType!
 }
@@ -56,16 +55,6 @@ type GqlCountryObjectType {
 type GqlSimplifiedCountryObjectType {
   id: UUID!
   name: String!
-}
-
-type GqlAreaObjectType {
-  id: UUID!
-  code: String!
-  name: String!
-  isActive: Boolean!
-  address: GqlAddressObjectType!
-  dms: GqlDmsObjectType!
-  crm: GqlCrmObjectType!
 }
 
 type GqlDmsObjectType {

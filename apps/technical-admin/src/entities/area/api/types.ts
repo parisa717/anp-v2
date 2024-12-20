@@ -1,4 +1,4 @@
-import { Area as GeneratedApiType, GqlAreaObjectType } from '@/shared/api/types.generated'
+import { Area as GeneratedApiType } from '@/shared/api/types.generated'
 
 import { GetAreaQuery, GetAreasQuery } from './Area.generated'
 
@@ -7,6 +7,5 @@ import { GetAreaQuery, GetAreasQuery } from './Area.generated'
  */
 
 export type AreaDTO = GeneratedApiType
-export type getAreaDTO = GqlAreaObjectType
 export type QueryAreas = GetAreasQuery['areas']
 export type QueryArea = GetAreaQuery['getArea']
