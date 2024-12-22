@@ -41,12 +41,12 @@ export const AreaDetailPage = () => {
 
   const handleEditAreaClick = () => navigate(pageUrls.areas.edit(id))
 
-  //const { data: areaData, isLoading: isAreaDataLoading, isError: isErrorArea } = useGetAreaQuery({ id })
+  const { data: areaData, isLoading: isAreaDataLoading, isError: isErrorArea } = useGetAreaQuery({ id })
 
-  // if (isErrorArea) {
-  //   //TODO: Add proper error handling
-  //   return 'Error'
-  // }
+  if (isErrorArea) {
+    //TODO: Add proper error handling
+    return 'Error'
+  }
 
   const translate = (key: string) => t(`pages.areas.areaDetail.${key}`)
 
@@ -57,13 +57,13 @@ export const AreaDetailPage = () => {
 
         <Button severity="secondary" outlined label={translate('EditAreaButton')} onClick={handleEditAreaClick} />
       </div>
-      {/* <DataTable
+      <DataTable
         columns={areaColumns}
         data={areaData ? [areaData] : []}
         loading={isAreaDataLoading}
         pt={{ ...dataTablePt, root: { ...dataTablePt.root, 'data-cy': 'area-table' } }}
         emptyMessage={translate('table.empty')}
-      /> */}
+      />
 
       <Outlet />
     </main>

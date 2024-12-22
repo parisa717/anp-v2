@@ -37,24 +37,6 @@ export const useAreaColumns = () => {
       },
     },
     {
-      field: 'dms.name',
-      header: translate('dms'),
-      pt: {
-        bodyCell: {
-          className: 'w-[11.25%] min-w-[160px]',
-        },
-      },
-    },
-    {
-      field: 'crm.name',
-      header: translate('crm'),
-      pt: {
-        bodyCell: {
-          className: 'w-[10%] min-w-[143px]',
-        },
-      },
-    },
-    {
       field: 'address.postCode',
       header: translate('zipCode'),
       pt: {

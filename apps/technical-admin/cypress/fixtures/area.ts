@@ -248,14 +248,6 @@ export const GET_AREA_OPERATION_DEFAULT_RESPONSE = {
       city: 'Markkleeberg',
       address: 'Magdeborner Str. 12',
     },
-    dms: {
-      id: 'dms_1',
-      name: 'DMS System',
-    },
-    crm: {
-      id: 'crm_1',
-      name: 'CRM System',
-    },
     isActive: false,
   },
 }
