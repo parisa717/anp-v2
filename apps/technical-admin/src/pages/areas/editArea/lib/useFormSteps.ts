@@ -1,16 +1,21 @@
+import { useTranslation } from '@nexus-ui/i18n'
+
+import { EditAreaFormStep } from '../model/types'
 
 
 export const useFormSteps = () => {
+  const { t } = useTranslation()
+  const translate = (formStep: EditAreaFormStep, key: string) => t(`pages.areas.editArea.steps.${formStep}.${key}`)
 
   const formSteps = [
     {
-      label: "Allgemeine Daten",
+      label: translate(EditAreaFormStep.General, 'title'),
     },
     {
-      label: "DMS zuordnen",
+      label: translate(EditAreaFormStep.DMS, 'title'),
     },
     {
-      label: "CRM zuordnen",
+      label: translate(EditAreaFormStep.CRM, 'title'),
     },
   ]
 

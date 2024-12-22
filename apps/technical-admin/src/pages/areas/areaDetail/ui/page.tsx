@@ -1,9 +1,10 @@
 import { useTranslation } from '@nexus-ui/i18n'
 import { DataTable } from '@nexus-ui/ui'
 import { Button } from 'primereact/button'
-import { Outlet, useParams } from 'react-router-dom'
+import { Outlet, useNavigate, useParams } from 'react-router-dom'
 
 import { useGetAreaQuery } from '@/entities/area'
+import { pageUrls } from '@/shared/lib'
 
 import { useAreaColumns } from '../lib/useAreaColumns'
 
@@ -36,13 +37,16 @@ export const AreaDetailPage = () => {
   const areaColumns = useAreaColumns()
 
   const { id = '' } = useParams<{ id: string }>()
+  const navigate = useNavigate()
 
-  const { data: areaData, isLoading: isAreaDataLoading, isError: isErrorArea } = useGetAreaQuery({ id })
+  const handleEditAreaClick = () => navigate(pageUrls.areas.edit(id))
 
-  if (isErrorArea) {
-    //TODO: Add proper error handling
-    return 'Error'
-  }
+  //const { data: areaData, isLoading: isAreaDataLoading, isError: isErrorArea } = useGetAreaQuery({ id })
+
+  // if (isErrorArea) {
+  //   //TODO: Add proper error handling
+  //   return 'Error'
+  // }
 
   const translate = (key: string) => t(`pages.areas.areaDetail.${key}`)
 
@@ -51,15 +55,15 @@ export const AreaDetailPage = () => {
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-headline">{translate('title')}</h1>
 
-        <Button severity="secondary" outlined label={translate('EditAreaButton')} />
+        <Button severity="secondary" outlined label={translate('EditAreaButton')} onClick={handleEditAreaClick} />
       </div>
-      <DataTable
+      {/* <DataTable
         columns={areaColumns}
         data={areaData ? [areaData] : []}
         loading={isAreaDataLoading}
         pt={{ ...dataTablePt, root: { ...dataTablePt.root, 'data-cy': 'area-table' } }}
         emptyMessage={translate('table.empty')}
-      />
+      /> */}
 
       <Outlet />
     </main>
