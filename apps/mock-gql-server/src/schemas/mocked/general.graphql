@@ -4,8 +4,6 @@ schema {
 
 type Query {
   currentUser: User
-  getLocation(id: UUID!): GqlLocationObjectType!
-  getLocations: GqlGetLocationsObjectType!
 }
 
 type User {
@@ -24,19 +22,7 @@ enum UserRole {
   AVAG_USER
 }
 
-type GqlGetLocationsObjectType {
-  locations: [GqlLocationObjectType!]!
-}
 
-type GqlLocationObjectType {
-  id: UUID!
-  code: String!
-  name: String!
-  isActive: Boolean!
-  address: GqlAddressObjectType!
-  area: GqlSimplifiedAreaObjectType!
-  brands: [GqlSimplifiedBrandObjectType!]!
-}
 
 type GqlAddressObjectType {
   id: UUID!

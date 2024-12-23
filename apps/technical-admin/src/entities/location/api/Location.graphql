@@ -5,14 +5,14 @@ mutation CreateLocation($location: GqlCreateLocationInputType!) {
 }
 
 query GetLocations {
-  getLocations {
+getLocations{
+
     locations {
       id
       code
       name
       isActive
       address {
-        id
         country {
           id
           name

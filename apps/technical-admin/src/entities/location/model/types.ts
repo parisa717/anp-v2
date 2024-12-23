@@ -1,3 +1,3 @@
-import { GqlLocationObjectType } from '@/shared/api/types.generated'
+import { GqlGetLocationObjectType } from '@/shared/api/types.generated'
 
-export type LocationEntity = GqlLocationObjectType
+export type LocationEntity = GqlGetLocationObjectType

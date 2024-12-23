@@ -126,36 +126,25 @@
           },
           "empty": "No area details found"
         }
-      },
-      "editArea": {
-        "title": "Edit Area",
-        "steps": {
-          "general": {
-            "title": "General Data",
-            "form": {
-              "fields": {
-                "areaId": "Area Id",
-                "areaName": "Area Name",
-                "areaStatus": "Status",
-                "areaCountry": "Country",
-                "areaPostCode": "Post code",
-                "areaCity": "City",
-                "areaAddress": "Address"
-              }
-            }
-          },
-          "DMS": {
-            "title": "Assign DMS"
-          },
-          "CRM": {
-            "title": "Assign CRM"
-          }
-        }
-
       }
-        
     },
     "locations": {
+      "locationsList": {
+        "title": "Locations Configuration",
+        "message": "Information: Only active locations are displayed.",
+        "table": {
+          "columnHeaders": {
+            "areaId": "Area ID",
+            "locationId": "Location ID",
+            "locationName": "Location Name",
+            "brand": "Brand",
+            "zipCode": "Zip Code",
+            "city": "City",
+            "address": "Address"
+          },
+          "empty": "No locations found"
+        }
+      },
       "createLocation": {
         "title": "Add Location",
         "description": "Choose Area to which you would like to assign the location",
