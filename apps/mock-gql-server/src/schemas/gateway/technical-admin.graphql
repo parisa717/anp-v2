@@ -25,6 +25,8 @@ type GqlGetBrandObjectType {
   Is Brand active
   """
   isActive: Boolean!
+
+
 }
 
 """
@@ -152,6 +154,8 @@ type Query {
 
  getLocations: GqlGetLocationsObjectType!
 
+
+
 }
 
 type Mutation {
@@ -164,7 +168,48 @@ type Mutation {
   This method updates Brand
   """
   updateBrand(brand: GqlUpdateBrandInputType!): GqlUpdateBrandObjectType!
+  
+  """This method updates Area"""
+  updateArea(area: GqlUpdateAreaInputType!): GqlUpdateAreaObjectType!
 }
+
+type GqlUpdateAreaObjectType {
+  """Status of Area update"""
+  status: Boolean!
+}
+input GqlUpdateAreaInputType {
+  """Area ID"""
+  id: UUID!
+
+  """Area code"""
+  code: String!
+
+  """Area name"""
+  name: String!
+
+  """Address"""
+  address: GqlSetAreaAddressObjectType!
+}
+
+input GqlSetAreaAddressObjectType {
+  """Country"""
+  country: GqlSetCountryObjectType!
+
+  """Postcode"""
+  postCode: String!
+
+  """City"""
+  city: String!
+
+  """Address (Street, house number/flat number)"""
+  address: String!
+}
+
+input GqlSetCountryObjectType {
+  """Country ID"""
+  id: UUID!
+}
+
 
 input GqlCreateBrandInputType {
   """
