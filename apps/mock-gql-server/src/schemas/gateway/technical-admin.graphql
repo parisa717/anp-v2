@@ -150,7 +150,7 @@ type Query {
     id: UUID!
   ): GqlGetAreaObjectType
 
-getLocations: GqlGetLocationsObjectType!
+ getLocations: GqlGetLocationsObjectType!
 
 }
 
@@ -257,6 +257,7 @@ type GqlGetLocationBrandObjectType {
   """Is Workshop Default"""
   isWorkshopDefault: Boolean!
 }
+
 type GqlGetLocationCountryObjectType {
   """Country ID"""
   id: UUID!
